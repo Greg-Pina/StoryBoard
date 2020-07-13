@@ -20,6 +20,13 @@ router.get(
 // @route   /auth/logout
 router.get('/logout', (req, res) => {
   req.logout()
+  if (req.session){
+    req.session.destroy(function(err) {
+      if (err){
+        console.error(err)
+      }
+    })
+  }
   res.redirect('/')
 })
 
